@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Cow Detection Device</title>
+    </head>
+    <body>
+        <h1>Cow Detection Device</h1>
+        <video src="/video_feed" autoplay></video>
+        <button id="buzzer-button">Toggle Buzzer</button>
+        <button id="cow-detection-button">Toggle Cow Detection</button>
+        <button id="camera-button">Toggle Camera</button>
+
+        <script>
+            document.getElementById('buzzer-button').addEventListener('click', function() {
+                fetch('/toggle-buzzer', {method: 'POST'});
+            });
+
+            document.getElementById('cow-detection-button').addEventListener('click', function() {
+                fetch('/toggle-cow-detection', {method: 'POST'});
+            });
+
+            document.getElementById('camera-button').addEventListener('click', function() {
+                fetch('/toggle-camera', {method: 'POST'});
+            });
+        </script>
+    </body>
+</html>
