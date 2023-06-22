@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, Response
-import RPi.GPIO as GPIO
+# import RPi.GPIO as GPIO
 from flask_basicauth import BasicAuth
 import cv2
 
@@ -11,10 +11,10 @@ app.config['BASIC_AUTH_PASSWORD'] = 'password'
 
 basic_auth = BasicAuth(app)
 
-# Set the GPIO mode
-GPIO.setmode(GPIO.BCM)
-BUZZER_PIN = 18  # change to your actual pin
-GPIO.setup(BUZZER_PIN, GPIO.OUT)
+# # Set the GPIO mode
+# GPIO.setmode(GPIO.BCM)
+# BUZZER_PIN = 18  # change to your actual pin
+# GPIO.setup(BUZZER_PIN, GPIO.OUT)
 
 # Initialize the VideoCapture object
 cap = cv2.VideoCapture(0)
@@ -24,12 +24,12 @@ cap = cv2.VideoCapture(0)
 def index():
     return render_template('index.html')
 
-@app.route('/toggle-buzzer', methods=['POST'])
-@basic_auth.required
-def toggle_buzzer():
-    state = GPIO.input(BUZZER_PIN)
-    GPIO.output(BUZZER_PIN, not state)
-    return '', 204
+# @app.route('/toggle-buzzer', methods=['POST'])
+# @basic_auth.required
+# def toggle_buzzer():
+#     state = GPIO.input(BUZZER_PIN)
+#     GPIO.output(BUZZER_PIN, not state)
+#     return '', 204
 
 @app.route('/toggle-cow-detection', methods=['POST'])
 @basic_auth.required
@@ -59,4 +59,4 @@ def generate_frames():
                    b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=80, debug=True)
+    app.run(host='0.0.0.0', port=8080, debug=True)
