@@ -9,7 +9,7 @@ workin_dir = os.getcwd()
 path_location = workin_dir
 filename = "cow"
 model= []
-model = torch.hub.load('ultralytics/yolov5', 'custom', path='/Users/parallelscore/Desktop/projects/ACE/Cowlert/person.pt'.format(path_location,filename))
+model = torch.hub.load('ultralytics/yolov5', 'custom', path='/Users/daniel/Desktop/Cowlert/person.pt'.format(path_location,filename))
 
 
 
